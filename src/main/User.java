@@ -11,7 +11,7 @@ public class User {
     public String emailAddress;
     public String phoneNumber;
     public Specifications specifications;
-    public Project project;
+    public UUID project;
 
     public enum AccountType {
         Customer,

@@ -7,8 +7,8 @@ public class Issue {
     public UUID id = UUID.randomUUID();
     public Date submitted;
     public Date updated;
-    public User reporter;
-    public User assignee;
+    public UUID reporter;
+    public UUID assignee;
     public IssueType type;
     public Priority priority;
     public String title;

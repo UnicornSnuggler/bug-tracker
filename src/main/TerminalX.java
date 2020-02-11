@@ -15,12 +15,16 @@ import java.util.Arrays;
 
 public class TerminalX {
     private static ArrayList<User> users;
+    private static ArrayList<Project> projects;
+    private static ArrayList<Issue> issues;
     private static User verifiedUser;
     private static JFrame screen;
 
-    public static void main (String[] args) throws IOException, InvalidKeySpecException, NoSuchAlgorithmException {
+    public static void main (String[] args) throws IOException {
         Gson gson = new Gson();
         users = gson.fromJson(new FileReader("./users.json"), new TypeToken<ArrayList<User>>(){}.getType());
+        projects = gson.fromJson(new FileReader("./projects.json"), new TypeToken<ArrayList<Project>>(){}.getType());
+        issues = gson.fromJson(new FileReader("./issues.json"), new TypeToken<ArrayList<Issue>>(){}.getType());
 
         System.out.println("Loaded the following users:");
         for (User user : users) {
@@ -52,7 +56,7 @@ public class TerminalX {
 
     public static boolean verifyLogin(String username, String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
         for (User user : users) {
-            if (username.equals(user.username) && Arrays.equals(Password.hashPassword(password), user.password)) {
+            if (username.equals(user.username) && Arrays.equals(Hasher.hash(password), user.password)) {
                 verifiedUser = user;
                 break;
             }

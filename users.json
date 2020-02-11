@@ -12,10 +12,7 @@
       "javaVersion":"1.8.0_241",
       "softwareVersion":"2.1.0"
     },
-    "project":{
-      "id":"3906e5a9-d858-4f2d-9332-3de7155c85ac",
-      "name":"TerminalX"
-    }
+    "project": "3906e5a9-d858-4f2d-9332-3de7155c85ac"
   },
   {
     "id":"59f278a6-64ea-453b-bfd7-a22cc34501ca",
@@ -30,9 +27,6 @@
       "javaVersion":"1.8.0_241",
       "softwareVersion":"2.1.2"
     },
-    "project":{
-      "id":"3906e5a9-d858-4f2d-9332-3de7155c85ac",
-      "name":"TerminalX"
-    }
+    "project": "3906e5a9-d858-4f2d-9332-3de7155c85ac"
   }
 ]

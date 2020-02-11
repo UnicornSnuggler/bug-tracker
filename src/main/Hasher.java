@@ -6,8 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 
-public class Password {
-    public static byte[] hashPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+public class Hasher {
+    public static byte[] hash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         KeySpec spec = new PBEKeySpec(password.toCharArray(), getSalt(), 65536, 128);
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         return factory.generateSecret(spec).getEncoded();

@@ -11,12 +11,19 @@ public class LoginForm extends JFrame {
     private JPasswordField passwordField;
     private JButton submitButton;
     private JPanel content;
+    private JLabel invalidLabel;
 
     public LoginForm() {
         setContentPane(content);
         submitButton.addActionListener(actionEvent -> {
             try {
-                TerminalX.verifyLogin(usernameField.getText(), new String(passwordField.getPassword()));
+                boolean result = TerminalX.verifyLogin(usernameField.getText(), new String(passwordField.getPassword()));
+
+                if (!result) {
+                    invalidLabel.setVisible(true);
+                } else {
+                    this.dispose();
+                }
             } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }

@@ -3,15 +3,15 @@ package main;
 import java.util.UUID;
 
 public class User {
-    UUID id = UUID.randomUUID();
-    AccountType type;
+    public UUID id = UUID.randomUUID();
+    public AccountType type;
     String username;
     byte[] password;
-    String name;
-    String emailAddress;
-    String phoneNumber;
-    Specifications specifications;
-    Project project;
+    public String name;
+    public String emailAddress;
+    public String phoneNumber;
+    public Specifications specifications;
+    public Project project;
 
     public enum AccountType {
         Customer,

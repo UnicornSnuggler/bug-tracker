@@ -3,6 +3,6 @@ package main;
 import java.util.UUID;
 
 public class Project {
-    UUID id = UUID.randomUUID();
-    String name;
+    public UUID id = UUID.randomUUID();
+    public String name;
 }

@@ -4,17 +4,17 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Issue {
-    UUID id = UUID.randomUUID();
-    Date submitted;
-    Date updated;
-    User reporter;
-    User assignee;
-    IssueType type;
-    Priority priority;
-    String title;
-    String description;
-    Status status;
-    String devNotes;
+    public UUID id = UUID.randomUUID();
+    public Date submitted;
+    public Date updated;
+    public User reporter;
+    public User assignee;
+    public IssueType type;
+    public Priority priority;
+    public String title;
+    public String description;
+    public Status status;
+    public String devNotes;
 
     public enum IssueType {
         Bug,

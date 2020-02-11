@@ -1,0 +1,38 @@
+[
+  {
+    "id":"004a57b5-454f-4a10-ac1a-e8cca02ea0d9",
+    "type":"QA",
+    "username":"admin",
+    "password":[122, 108, 14, 73, 93, 80, -85, 26, -38, 83, 67, 4, -16, -13, -102, 96],
+    "name":"TerminalX Administrator",
+    "emailAddress":"admin@terminalx.com",
+    "phoneNumber":"(800) 567-0980",
+    "specifications":{
+      "operatingSystem":"Windows",
+      "javaVersion":"1.8.0_241",
+      "softwareVersion":"2.1.0"
+    },
+    "project":{
+      "id":"3906e5a9-d858-4f2d-9332-3de7155c85ac",
+      "name":"TerminalX"
+    }
+  },
+  {
+    "id":"59f278a6-64ea-453b-bfd7-a22cc34501ca",
+    "type":"Developer",
+    "username":"willislo",
+    "password":[122, 108, 14, 73, 93, 80, -85, 26, -38, 83, 67, 4, -16, -13, -102, 96],
+    "name":"Logan Willis",
+    "emailAddress":"logan.willis@terminalx.com",
+    "phoneNumber":"(100) 867-5309",
+    "specifications":{
+      "operatingSystem":"Windows",
+      "javaVersion":"1.8.0_241",
+      "softwareVersion":"2.1.2"
+    },
+    "project":{
+      "id":"3906e5a9-d858-4f2d-9332-3de7155c85ac",
+      "name":"TerminalX"
+    }
+  }
+]

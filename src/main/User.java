@@ -3,8 +3,10 @@ package main;
 import java.util.UUID;
 
 public class User {
-    UUID id;
+    UUID id = UUID.randomUUID();
     AccountType type;
+    String username;
+    byte[] password;
     String name;
     String emailAddress;
     String phoneNumber;

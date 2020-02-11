@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Issue {
-    UUID id;
+    UUID id = UUID.randomUUID();
     Date submitted;
     Date updated;
     User reporter;

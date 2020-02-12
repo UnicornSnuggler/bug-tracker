@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import resources.forms.LoginForm;
 import resources.forms.MenuForm;
+import resources.forms.SubmitIssueForm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,6 +55,15 @@ public class TerminalX {
         screen.setVisible(true);
     }
 
+    private static void displaySubmitIssue() {
+        screen = new JFrame("Submit Issue");
+        screen.setContentPane(new SubmitIssueForm(verifiedUser.name).getContentPane());
+        screen.setMinimumSize(new Dimension(650, 500));
+        screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        screen.pack();
+        screen.setVisible(true);
+    }
+
     public static boolean verifyLogin(String username, String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
         for (User user : users) {
             if (username.equals(user.username) && Arrays.equals(Hasher.hash(password), user.password)) {
@@ -71,5 +81,15 @@ public class TerminalX {
             System.out.println("Invalid credentials...");
             return false;
         }
+    }
+
+    public static void openSubmitIssueForm() {
+        screen.dispose();
+        displaySubmitIssue();
+    }
+
+    public static void openMenu() {
+        screen.dispose();
+        displayMenu();
     }
 }

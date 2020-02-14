@@ -12,12 +12,12 @@
       "javaVersion":"1.8.0_241",
       "softwareVersion":"2.1.0"
     },
-    "project": "3906e5a9-d858-4f2d-9332-3de7155c85ac"
+    "project": "3906e5a9-d858-4f2d-9332-3de9155c85ac"
   },
   {
     "id":"59f278a6-64ea-453b-bfd7-a22cc34501ca",
     "type":"Developer",
-    "username":"willislo",
+    "username":"lwillis",
     "password":[122, 108, 14, 73, 93, 80, -85, 26, -38, 83, 67, 4, -16, -13, -102, 96],
     "name":"Logan Willis",
     "emailAddress":"logan.willis@terminalx.com",
@@ -27,6 +27,81 @@
       "javaVersion":"1.8.0_241",
       "softwareVersion":"2.1.2"
     },
-    "project": "3906e5a9-d858-4f2d-9332-3de7155c85ac"
+    "project": "3906e5a9-d858-4f2d-9332-3de9155c85ac"
+  },
+  {
+    "id":"59f898a6-65ea-453c-bfd7-a23cc34501ca",
+    "type":"Developer",
+    "username":"ksherbondy",
+    "password":[122, 108, 14, 73, 93, 80, -85, 26, -38, 83, 67, 4, -16, -13, -102, 96],
+    "name":"Kris Sherbondy",
+    "emailAddress":"kris.sherbondy@terminalx.com",
+    "phoneNumber":"(230) 800-6511",
+    "specifications":{
+      "operatingSystem":"Windows",
+      "javaVersion":"1.8.0_241",
+      "softwareVersion":"2.1.2"
+    },
+    "project": "3906e5a9-d858-4f2d-9332-3de9155c85ac"
+  },
+  {
+    "id":"59rf98a6-65ea-453c-b8h7-a23jko450199",
+    "type":"Customer",
+    "username":"jrodriguez",
+    "password":[122, 108, 14, 73, 93, 80, -85, 26, -38, 83, 67, 4, -16, -13, -102, 96],
+    "name":"Juan Rodriguez",
+    "emailAddress":"juan.rodriguez@pegasus.com",
+    "phoneNumber":"(555) 010-2770",
+    "specifications":{
+      "operatingSystem":"MacOS",
+      "javaVersion":"1.8.0_239",
+      "softwareVersion":"2.1.1"
+    },
+    "project": "41gtd06e-d328-4f8b-yug2-3155cpol651x"
+  },
+  {
+    "id":"59rf821j-67ja-oi9c-v7y7-a23jkon5ma8f",
+    "type":"QA",
+    "username":"jmartin",
+    "password":[122, 108, 14, 73, 93, 80, -85, 26, -38, 83, 67, 4, -16, -13, -102, 96],
+    "name":"Joseph Martin",
+    "emailAddress":"joseph.martin@terminalx.com",
+    "phoneNumber":"(877) 210-2501",
+    "specifications":{
+      "operatingSystem":"Linux",
+      "javaVersion":"1.8.0_240",
+      "softwareVersion":"2.1.2"
+    },
+    "project": "3906e5a9-d858-4f2d-9332-3de9155c85ac"
+  },
+  {
+    "id":"59i0v2gh-90ga-ok1c-v5b7-a2l1bon5gg8c",
+    "type":"Developer",
+    "username":"msevilla",
+    "password":[122, 108, 14, 73, 93, 80, -85, 26, -38, 83, 67, 4, -16, -13, -102, 96],
+    "name":"Melvin Sevilla",
+    "emailAddress":"melvin.sevilla@terminalx.com",
+    "phoneNumber":"(606) 521-7744",
+    "specifications":{
+      "operatingSystem":"Windows",
+      "javaVersion":"1.8.0_240",
+      "softwareVersion":"2.1.2"
+    },
+    "project": "3906e5a9-d858-4f2d-9332-3de9155c85ac"
+  },
+  {
+    "id":"59i00hch-9k00-okdv-v85x-a2g7abn5h0pc",
+    "type":"Customer",
+    "username":"hsisneros",
+    "password":[122, 108, 14, 73, 93, 80, -85, 26, -38, 83, 67, 4, -16, -13, -102, 96],
+    "name":"Hayden Sisneros",
+    "emailAddress":"hayden.sisneros@cyclone.com",
+    "phoneNumber":"(122) 909-8444",
+    "specifications":{
+      "operatingSystem":"MacOS",
+      "javaVersion":"1.8.0_237",
+      "softwareVersion":"2.1.0"
+    },
+    "project": "jdf91l6b-d0pl-n8ab-y2kz-31kaj89l654b"
   }
 ]

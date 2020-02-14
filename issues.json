@@ -7,7 +7,7 @@
     "title": "Refresh button not working",
     "description": "When I click the 'Refresh' button at the top of the main menu. It doesn't actually refresh the page. This is troublesome because I need to be able to view the most up-to-date reports when I'm writing up my talking points for daily meetings. Please put a high priority on this because it's terribly inconvenient for me!",
     "status": "Archived",
-    "assignee": "Joseph Martin",
+    "assignee": "QA",
     "dev_notes": "I've confirmed that the refresh button is -in fact- working as intended. It appears as though Mr. Willis' subordinates just aren't submitting their reports on time like he expects them to. I got the go-ahead from Juan to archive this since there weren't any code changes to make.",
     "project": "3906e5a9-d858-4f2d-9332-3de7155c85ac"
   },

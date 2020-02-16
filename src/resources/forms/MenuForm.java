@@ -1,6 +1,7 @@
 package resources.forms;
 
 import main.Issue;
+import main.TerminalX;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class MenuForm extends JFrame {
         sortByComboBox.addItem("Name");
 
         submitIssueButton.addActionListener(actionEvent -> {
-            // Placeholder
+            TerminalX.openSubmitIssueForm();
         });
         logOutButton.addActionListener(actionEvent -> {
             // Placeholder

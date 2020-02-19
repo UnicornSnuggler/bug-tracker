@@ -8,7 +8,7 @@ public class Issue {
     public Date submitted;
     public Date updated;
     public UUID reporter;
-    public UUID assignee;
+    public String assignee;
     public IssueType type;
     public Priority priority;
     public String title;

@@ -5,16 +5,16 @@ import java.util.UUID;
 
 public class Issue {
     public UUID id = UUID.randomUUID();
-    public Date submitted;
-    public Date updated;
+    public Date submitted = new Date();
+    public Date updated = new Date();
     public UUID reporter;
-    public UUID assignee;
+    public UUID assignee = null;
     public IssueType type;
-    public Priority priority;
+    public Priority priority = Priority.Low;
     public String title;
     public String description;
-    public Status status;
-    public String devNotes;
+    public Status status = Status.Backlog;
+    public String devNotes = "";
 
     public enum IssueType {
         Bug,

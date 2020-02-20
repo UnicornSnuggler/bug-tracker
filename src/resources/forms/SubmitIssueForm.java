@@ -1,8 +1,10 @@
 package resources.forms;
 
+import main.Issue;
 import main.TerminalX;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class SubmitIssueForm extends JFrame {
     private JPanel content;
@@ -25,16 +27,29 @@ public class SubmitIssueForm extends JFrame {
         issueTypeComboBox.addItem("Technical Debt");
 
         submitButton.addActionListener(actionEvent -> {
-            // Placeholder
+            if (titleField.getText().isBlank() || descriptionArea.getText().isBlank()) {
+                System.out.println("Invalid submission!");
+            } else {
+                Issue issue = new Issue();
+                issue.reporter = TerminalX.verifiedUser.id;
+                issue.type = Enum.valueOf(Issue.IssueType.class, issueTypeComboBox.getSelectedItem().toString().replace(' ', '_'));
+                issue.title = titleField.getText();
+                issue.description = descriptionArea.getText();
+
+                try {
+                    TerminalX.addIssue(issue);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                TerminalX.openMenu();
+            }
         });
         logOutButton.addActionListener(actionEvent -> {
             // Placeholder
         });
         backButton.addActionListener(actionEvent -> {
             TerminalX.openMenu();
-        });
-        logOutButton.addActionListener(actionEvent -> {
-            // Placeholder
         });
     }
 }

@@ -46,7 +46,7 @@ public class SubmitIssueForm extends JFrame {
             }
         });
         logOutButton.addActionListener(actionEvent -> {
-            // Placeholder
+            TerminalX.logout();
         });
         backButton.addActionListener(actionEvent -> {
             TerminalX.openMenu();

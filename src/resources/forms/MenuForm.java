@@ -35,7 +35,7 @@ public class MenuForm extends JFrame {
             TerminalX.openSubmitIssueForm();
         });
         logOutButton.addActionListener(actionEvent -> {
-            // Placeholder
+            TerminalX.logout();
         });
         sortByComboBox.addActionListener(actionEvent -> {
             // Placeholder

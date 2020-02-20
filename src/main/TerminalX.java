@@ -14,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class TerminalX {
     private static ArrayList<User> users;
@@ -55,10 +56,16 @@ public class TerminalX {
     }
 
     private static void displayMenu() {
-        ArrayList<Issue> issues = new ArrayList<>();
+        ArrayList<Issue> userIssues;
+
+        if (verifiedUser.type == User.AccountType.Customer) {
+            userIssues = issues.stream().filter(issue -> issue.reporter.equals(verifiedUser.id)).collect(Collectors.toCollection(ArrayList::new));
+        } else {
+            userIssues = issues;
+        }
 
         screen = new JFrame("Main Menu");
-        screen.setContentPane(new MenuForm(verifiedUser.name, issues).getContentPane());
+        screen.setContentPane(new MenuForm(verifiedUser.name, userIssues).getContentPane());
         screen.setMinimumSize(new Dimension(650, 500));
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen.pack();
@@ -72,6 +79,12 @@ public class TerminalX {
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen.pack();
         screen.setVisible(true);
+    }
+
+    public static void logout() {
+        verifiedUser = null;
+        screen.dispose();
+        displayLogin();
     }
 
     public static boolean verifyLogin(String username, String password) throws InvalidKeySpecException, NoSuchAlgorithmException {

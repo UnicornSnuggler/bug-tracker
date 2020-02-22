@@ -11,32 +11,53 @@ public class Issue {
     public UUID assignee;
     public IssueType type;
     public Priority priority;
-    public String title;
+    public static String title;
     public String description;
     public Status status;
     public String devNotes;
 
     public enum IssueType {
-        Bug,
-        Request,
-        Investigation,
-        Technical_Debt
+        Bug("Bug"),
+        Request("Request"),
+        Investigation("Investigation"),
+        Technical_Debt("Technical Debt");
+        String enumLongName;
+        IssueType(String enumLongName){
+            this.enumLongName = title;
+        }
+        public String getEnumLongName(){
+            return title;
+        }
     }
 
     public enum Priority {
-        Low,
-        Medium,
-        High
+        Low("Low"),
+        Medium("Medium"),
+        High("High");
+        String enumLongName;
+        Priority(String enumLongName){
+            this.enumLongName = title;
+        }
+        public String getEnumLongName(){
+            return title;
+        }
     }
 
     public enum Status {
-        Backlog,
-        Ready_for_Development,
-        In_Development,
-        Ready_for_Testing,
-        Testing,
-        Ready_for_Deployment,
-        Deployed,
-        Archived
+        Backlog("Backlog"),
+        Ready_for_Development("Ready for Development"),
+        In_Development("In Development"),
+        Ready_for_Testing("Ready for Testing"),
+        Testing("Testing"),
+        Ready_for_Deployment("Ready for Deployment"),
+        Deployed("Deployed"),
+        Archived("Archived");
+        String enumLongName;
+        Status(String enumLongName){
+            this.enumLongName = title;
+        }
+        public String getEnumLongName(){
+            return title;
+        }
     }
 }

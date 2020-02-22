@@ -1,0 +1,38 @@
+[
+  {
+    "id":"004a57b5-454f-4a10-ac1a-e8cca02ea0d9",
+    "date_submitted": "02/12/2020",
+    "issue_type": "Bug",
+    "priority": "Low",
+    "title": "Refresh button not working",
+    "description": "When I click the 'Refresh' button at the top of the main menu. It doesn't actually refresh the page. This is troublesome because I need to be able to view the most up-to-date reports when I'm writing up my talking points for daily meetings. Please put a high priority on this because it's terribly inconvenient for me!",
+    "status": "Archived",
+    "assignee": "59f278a6-64ea-453b-bfd7-a22cc34501ca",
+    "dev_notes": "I've confirmed that the refresh button is -in fact- working as intended. It appears as though Mr. Willis' subordinates just aren't submitting their reports on time like he expects them to. I got the go-ahead from Juan to archive this since there weren't any code changes to make.",
+    "project": "3906e5a9-d858-4f2d-9332-3de7155c85ac"
+  },
+  {
+    "id":"004a57b5-454f-4a10-ac1a-e8cca02ea0d9",
+    "date_submitted": "02/13/2020",
+    "issue_type": "Bug",
+    "priority": "High",
+    "title": "Can login without entering password",
+    "description": "I was able to enter 'admin' as the username and login without entering a password.",
+    "status": "Active",
+    "assignee": "59f278a6-64ea-453b-bfd7-a22cc34501ca",
+    "dev_notes": "Tracked the issue to the verify login function. Working on a fix to ensure user must enter a password in the login field and verifies it against the stored password.",
+    "project": "3906e5a9-d858-4f2d-9332-3de7155c85ac"
+  },
+  {
+    "id":"004a57b5-454f-4a10-ac1a-e8cca02ea0d9",
+    "date_submitted": "02/12/2020",
+    "issue_type": "Bug",
+    "priority": "Low",
+    "title": "Submit button not working.",
+    "description": "While trying to submit a report to QA the submit button appears to not be working.",
+    "status": "Active",
+    "assignee": "59f278a6-64ea-453b-bfd7-a22cc34501ca",
+    "dev_notes": "Currently running tests to see if the error can be repeated.",
+    "project": "3906e5a9-d858-4f2d-9332-3de7155c85ac"
+  }
+]

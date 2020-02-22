@@ -14,8 +14,18 @@ public class User {
     public UUID project;
 
     public enum AccountType {
-        Customer,
-        Developer,
-        QA
+        Customer("Customer"),
+        Developer("Developer"),
+        QA("QA");
+
+        String enumLongName;
+
+        AccountType(String enumLongName){
+            this.enumLongName = enumLongName;
+        }
+
+        public String getName(){
+            return enumLongName;
+        }
     }
 }

@@ -11,7 +11,7 @@ public class Issue {
     public UUID assignee;
     public IssueType type;
     public Priority priority;
-    public static String title;
+    public String title;
     public String description;
     public Status status;
     public String devNotes;
@@ -21,12 +21,15 @@ public class Issue {
         Request("Request"),
         Investigation("Investigation"),
         Technical_Debt("Technical Debt");
+
         String enumLongName;
+
         IssueType(String enumLongName){
-            this.enumLongName = title;
+            this.enumLongName = enumLongName;
         }
-        public String getEnumLongName(){
-            return title;
+
+        public String getName(){
+            return enumLongName;
         }
     }
 
@@ -34,12 +37,15 @@ public class Issue {
         Low("Low"),
         Medium("Medium"),
         High("High");
+
         String enumLongName;
+
         Priority(String enumLongName){
-            this.enumLongName = title;
+            this.enumLongName = enumLongName;
         }
-        public String getEnumLongName(){
-            return title;
+
+        public String getName(){
+            return enumLongName;
         }
     }
 
@@ -52,12 +58,15 @@ public class Issue {
         Ready_for_Deployment("Ready for Deployment"),
         Deployed("Deployed"),
         Archived("Archived");
+
         String enumLongName;
+
         Status(String enumLongName){
-            this.enumLongName = title;
+            this.enumLongName = enumLongName;
         }
-        public String getEnumLongName(){
-            return title;
+
+        public String getName(){
+            return enumLongName;
         }
     }
 }

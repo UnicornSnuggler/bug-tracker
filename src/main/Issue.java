@@ -17,26 +17,56 @@ public class Issue {
     public String devNotes = "";
 
     public enum IssueType {
-        Bug,
-        Request,
-        Investigation,
-        Technical_Debt
+        Bug("Bug"),
+        Request("Request"),
+        Investigation("Investigation"),
+        Technical_Debt("Technical Debt");
+
+        String enumLongName;
+
+        IssueType(String enumLongName){
+            this.enumLongName = enumLongName;
+        }
+
+        public String getName(){
+            return enumLongName;
+        }
     }
 
     public enum Priority {
-        Low,
-        Medium,
-        High
+        Low("Low"),
+        Medium("Medium"),
+        High("High");
+
+        String enumLongName;
+
+        Priority(String enumLongName){
+            this.enumLongName = enumLongName;
+        }
+
+        public String getName(){
+            return enumLongName;
+        }
     }
 
     public enum Status {
-        Backlog,
-        Ready_for_Development,
-        In_Development,
-        Ready_for_Testing,
-        Testing,
-        Ready_for_Deployment,
-        Deployed,
-        Archived
+        Backlog("Backlog"),
+        Ready_for_Development("Ready for Development"),
+        In_Development("In Development"),
+        Ready_for_Testing("Ready for Testing"),
+        Testing("Testing"),
+        Ready_for_Deployment("Ready for Deployment"),
+        Deployed("Deployed"),
+        Archived("Archived");
+
+        String enumLongName;
+
+        Status(String enumLongName){
+            this.enumLongName = enumLongName;
+        }
+
+        public String getName(){
+            return enumLongName;
+        }
     }
 }

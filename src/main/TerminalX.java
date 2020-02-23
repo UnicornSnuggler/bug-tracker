@@ -31,7 +31,7 @@ public class TerminalX {
 
         System.out.println("Loaded the following users:");
         for (User user : users) {
-            System.out.println(user.emailAddress);
+            System.out.println(user.emailAddress + " (" + user.type.getName() + ")");
         }
 
         displayLogin();

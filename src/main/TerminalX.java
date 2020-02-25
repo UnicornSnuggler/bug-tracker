@@ -3,6 +3,7 @@ package main;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import resources.forms.IssueDetailCustomer;
 import resources.forms.LoginForm;
 import resources.forms.MenuForm;
 import resources.forms.SubmitIssueForm;
@@ -86,7 +87,16 @@ public class TerminalX {
         screen.dispose();
         displayLogin();
     }
-
+    /*
+    private static void IssueDetailCustomer() {
+        screen = new JFrame("Issue Detail");
+        screen.setContentPane(new IssueDetailCustomer().getContentPane());
+        screen.setMinimumSize(new Dimension(650, 500));
+        screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        screen.pack();
+        screen.setVisible(true);
+    }
+*/
     public static boolean verifyLogin(String username, String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
         for (User user : users) {
             if (username.equals(user.username) && Arrays.equals(Hasher.hash(password), user.password)) {

@@ -3,9 +3,7 @@ package main;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import resources.forms.LoginForm;
-import resources.forms.MenuForm;
-import resources.forms.SubmitIssueForm;
+import resources.forms.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,16 +44,7 @@ public class TerminalX {
         writer.close();
     }
 
-    private static void displayLogin() {
-        screen = new JFrame("Login");
-        screen.setContentPane(new LoginForm().getContentPane());
-        screen.setMinimumSize(new Dimension(300, 200));
-        screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        screen.pack();
-        screen.setVisible(true);
-    }
-
-    private static void displayMenu() {
+    private static ArrayList<Issue> getIssues() {
         ArrayList<Issue> userIssues;
 
         if (verifiedUser.type == User.AccountType.Customer) {
@@ -64,9 +53,24 @@ public class TerminalX {
             userIssues = issues;
         }
 
+        return userIssues;
+    }
+
+    private static void displayLogin() {
+        screen = new JFrame("Login");
+        screen.setContentPane(new LoginForm().getContentPane());
+        screen.setMinimumSize(new Dimension(300, 200));
+        screen.setMaximumSize(new Dimension(300, 200));
+        screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        screen.pack();
+        screen.setVisible(true);
+    }
+
+    private static void displayMenu() {
         screen = new JFrame("Main Menu");
-        screen.setContentPane(new MenuForm(verifiedUser.name, userIssues).getContentPane());
+        screen.setContentPane(new MenuForm(verifiedUser.name, getIssues()).getContentPane());
         screen.setMinimumSize(new Dimension(650, 500));
+        screen.setMaximumSize(new Dimension(650, 500));
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen.pack();
         screen.setVisible(true);
@@ -76,6 +80,26 @@ public class TerminalX {
         screen = new JFrame("Submit Issue");
         screen.setContentPane(new SubmitIssueForm(verifiedUser.name).getContentPane());
         screen.setMinimumSize(new Dimension(650, 500));
+        screen.setMaximumSize(new Dimension(650, 500));
+        screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        screen.pack();
+        screen.setVisible(true);
+    }
+
+    private static void displayIssueDetails(int index) {
+        Issue issue = getIssues().get(index);
+        Container content;
+
+        if (verifiedUser.type == User.AccountType.Customer) {
+            content = new CustomerIssueDetailsForm(verifiedUser.name, issue).getContentPane();
+        } else {
+            content = new EmployeeIssueDetailsForm(verifiedUser.name, issue).getContentPane();
+        }
+
+        screen = new JFrame("Issue Details");
+        screen.setContentPane(content);
+        screen.setMinimumSize(new Dimension(650, 500));
+        screen.setMaximumSize(new Dimension(650, 500));
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen.pack();
         screen.setVisible(true);
@@ -111,7 +135,12 @@ public class TerminalX {
         displaySubmitIssue();
     }
 
-    public static void openMenu() {
+    public static void openIssueDetailsForm(int index) {
+        screen.dispose();
+        displayIssueDetails(index);
+    }
+
+    public static void openMenuForm() {
         screen.dispose();
         displayMenu();
     }

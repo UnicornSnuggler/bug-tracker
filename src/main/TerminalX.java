@@ -22,9 +22,7 @@ public class TerminalX {
     private static JFrame screen;
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public static void main (String[] args) throws IOException, ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-
+    public static void main (String[] args) throws IOException {
         users = gson.fromJson(new FileReader("./users.json"), new TypeToken<ArrayList<User>>(){}.getType());
         projects = gson.fromJson(new FileReader("./projects.json"), new TypeToken<ArrayList<Project>>(){}.getType());
         issues = gson.fromJson(new FileReader("./issues.json"), new TypeToken<ArrayList<Issue>>(){}.getType());
@@ -34,9 +32,7 @@ public class TerminalX {
             System.out.println(user.emailAddress);
         }
 
-        //displayLogin();
-        verifiedUser = users.get(0);
-        displayIssueDetails(0);
+        displayLogin();
     }
 
     public static void addIssue(Issue issue) throws IOException {

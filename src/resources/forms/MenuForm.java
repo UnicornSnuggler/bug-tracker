@@ -48,7 +48,7 @@ public class MenuForm extends JFrame {
                 viewIssueButton.setEnabled(true);
         });
         viewIssueButton.addActionListener(actionEvent -> {
-            // Placeholder
+            TerminalX.openIssueDetailsForm(issueList.getSelectedIndex());
         });
     }
 }

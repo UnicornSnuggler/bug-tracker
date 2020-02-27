@@ -6,8 +6,18 @@ public class Specifications {
     String softwareVersion;
 
     public enum OS {
-        Windows,
-        MacOS,
-        Linux
+        Windows("Windows"),
+        MacOS("MacOS"),
+        Linux("Linux");
+
+        String enumLongName;
+
+        OS(String enumLongName){
+            this.enumLongName = enumLongName;
+        }
+
+        public String getName(){
+            return enumLongName;
+        }
     }
 }

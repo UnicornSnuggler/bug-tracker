@@ -42,14 +42,14 @@ public class SubmitIssueForm extends JFrame {
                     e.printStackTrace();
                 }
 
-                TerminalX.openMenu();
+                TerminalX.openMenuForm();
             }
         });
         logOutButton.addActionListener(actionEvent -> {
             TerminalX.logout();
         });
         backButton.addActionListener(actionEvent -> {
-            TerminalX.openMenu();
+            TerminalX.openMenuForm();
         });
     }
 }

@@ -15,7 +15,6 @@ public class EmployeeIssueDetailsForm extends JFrame {
     private JLabel reporterLabel;
     private JLabel idLabel;
     private JLabel updatedLabel;
-    private JLabel assigneeLabel;
     private JLabel userLabel;
     private JButton updateButton;
     private JButton deleteButton;
@@ -23,7 +22,7 @@ public class EmployeeIssueDetailsForm extends JFrame {
     private JTextField titleTextField;
     private JComboBox statusComboBox;
     private JComboBox priorityComboBox;
-    private JButton assignButton;
+    private JComboBox assigneeComboBox;
 
     public EmployeeIssueDetailsForm(String name, Issue issue) {
         content.setMaximumSize(new Dimension(650, 500));
@@ -44,7 +43,7 @@ public class EmployeeIssueDetailsForm extends JFrame {
         descriptionTextArea.setText(issue.description);
         priorityComboBox.setSelectedItem(issue.priority.toString());
         statusComboBox.setSelectedItem(issue.status.toString());
-        assigneeLabel.setText(issue.assignee != null ? issue.assignee.toString() : "Unassigned");
+        assigneeComboBox.setSelectedItem(issue.assignee.toString());
         notesTextArea.setText(issue.devNotes);
         updatedLabel.setText(issue.updated.toString());
 
@@ -55,5 +54,10 @@ public class EmployeeIssueDetailsForm extends JFrame {
         backButton.addActionListener(actionEvent -> {
             TerminalX.openMenuForm();
         });
+
+        updateButton.addActionListener(actionEvent -> {
+
+        });
+
     }
 }

@@ -8,7 +8,7 @@ public class Issue {
     public Date submitted = new Date();
     public Date updated = new Date();
     public UUID reporter;
-    public Assignee assignee = Assignee.Logan;
+    public Assignee assignee = Assignee.Logan_Willis;
     public IssueType type;
     public Priority priority = Priority.Low;
     public String title;
@@ -34,12 +34,12 @@ public class Issue {
     }
 
     public enum Assignee {
-        Logan("Logan Willis"),
-        Kris("Kris Sherbondy"),
-        Hayden("Hayden Sisneros"),
-        Melvin("Melvin Sevilla"),
-        Juan("Jaun Rodriguez-Alicea"),
-        Joseph("Joseph Martin");
+        Logan_Willis("Logan Willis"),
+        Kris_Sherbondy("Kris Sherbondy"),
+        Hayden_Sisneros("Hayden Sisneros"),
+        Melvin_Sevilla("Melvin Sevilla"),
+        Juan_Rodriguez_Alicea("Jaun Rodriguez Alicea"),
+        Joseph_Martin("Joseph Martin");
 
         String enumLongName;
 

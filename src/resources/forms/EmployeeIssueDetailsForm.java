@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class EmployeeIssueDetailsForm extends JFrame {
+    private Issue issue;
     private JButton logoutButton;
     private JComboBox typeComboBox;
     private JTextArea descriptionTextArea;
@@ -25,6 +26,7 @@ public class EmployeeIssueDetailsForm extends JFrame {
     private JComboBox assigneeComboBox;
 
     public EmployeeIssueDetailsForm(String name, Issue issue) {
+        this.issue = issue;
         content.setMaximumSize(new Dimension(650, 500));
         setContentPane(content);
 
@@ -56,7 +58,12 @@ public class EmployeeIssueDetailsForm extends JFrame {
         });
 
         updateButton.addActionListener(actionEvent -> {
-
+            issue.type = Enum.valueOf(Issue.IssueType.class, typeComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.devNotes = notesTextArea.getText();
+            issue.assignee = Enum.valueOf(Issue.Assignee.class, assigneeComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.status = Enum.valueOf(Issue.Status.class, statusComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.priority = Enum.valueOf(Issue.Priority.class, priorityComboBox.getSelectedItem().toString().replace(' ', '_'));
+            TerminalX.openMenuForm();
         });
 
     }

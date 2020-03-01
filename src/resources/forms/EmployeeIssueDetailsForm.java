@@ -5,6 +5,7 @@ import main.TerminalX;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class EmployeeIssueDetailsForm extends JFrame {
     private Issue issue;
@@ -63,6 +64,12 @@ public class EmployeeIssueDetailsForm extends JFrame {
             issue.assignee = Enum.valueOf(Issue.Assignee.class, assigneeComboBox.getSelectedItem().toString().replace(' ', '_'));
             issue.status = Enum.valueOf(Issue.Status.class, statusComboBox.getSelectedItem().toString().replace(' ', '_'));
             issue.priority = Enum.valueOf(Issue.Priority.class, priorityComboBox.getSelectedItem().toString().replace(' ', '_'));
+            try {
+                TerminalX.replaceIssue(issue);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             TerminalX.openMenuForm();
         });
 

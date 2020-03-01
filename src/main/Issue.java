@@ -8,13 +8,13 @@ public class Issue {
     public Date submitted = new Date();
     public Date updated = new Date();
     public UUID reporter;
-    public Assignee assignee = Assignee.Logan_Willis;
+    public Assignee assignee = Assignee.Kris_Sherbondy;
     public IssueType type;
-    public Priority priority = Priority.Low;
+    public Priority priority = Priority.Medium;
     public String title;
     public String description;
     public Status status = Status.Backlog;
-    public String devNotes = "";
+    public String devNotes = " ";
 
     public enum IssueType {
         Bug("Bug"),

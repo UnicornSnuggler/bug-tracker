@@ -44,11 +44,20 @@ public class TerminalX {
         writer.close();
     }
 
+    public static void replaceIssue(Issue issue) throws IOException {
+        issues.replace(issue);
+
+        FileWriter writer = new FileWriter("./issues.json");
+        gson.toJson(issues, writer);
+        writer.flush();
+        writer.close();
+    }
+
     private static ArrayList<Issue> getIssues() {
         ArrayList<Issue> userIssues;
 
         if (verifiedUser.type == User.AccountType.Customer) {
-            userIssues = issues.stream().filter(issue -> issue.reporter.equals(verifiedUser.id)).collect(Collectors.toCollection(ArrayList::new));
+            userIssues = issues.stream().filter(issue -> issue.reporter.equals(verifiedUser.name)).collect(Collectors.toCollection(ArrayList::new));
         } else {
             userIssues = issues;
         }

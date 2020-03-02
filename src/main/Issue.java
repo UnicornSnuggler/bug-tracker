@@ -8,7 +8,7 @@ public class Issue {
     public Date submitted = new Date();
     public Date updated = new Date();
     public UUID reporter;
-    public Assignee assignee = Assignee.Kris_Sherbondy;
+    public UUID assignee = null;
     public IssueType type;
     public Priority priority = Priority.Medium;
     public String title;
@@ -31,21 +31,6 @@ public class Issue {
         public String getName(){
             return enumLongName;
         }
-    }
-
-    public enum Assignee {
-        Logan_Willis("Logan Willis"),
-        Kris_Sherbondy("Kris Sherbondy"),
-        Hayden_Sisneros("Hayden Sisneros"),
-        Melvin_Sevilla("Melvin Sevilla"),
-        Juan_Rodriguez_Alicea("Jaun Rodriguez Alicea"),
-        Joseph_Martin("Joseph Martin");
-
-        String enumLongName;
-
-        Assignee(String enumLongName) {this.enumLongName = enumLongName;}
-
-        public String getName() {return enumLongName;}
     }
 
     public enum Priority {

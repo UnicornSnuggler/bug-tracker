@@ -2,6 +2,7 @@ package resources.forms;
 
 import main.Issue;
 import main.TerminalX;
+import main.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,20 +34,22 @@ public class EmployeeIssueDetailsForm extends JFrame {
 
         userLabel.setText("Signed in as " + name);
 
-        typeComboBox.removeAllItems();
-        typeComboBox.addItem("Bug");
-        typeComboBox.addItem("Request");
-        typeComboBox.addItem("Investigation");
-        typeComboBox.addItem("Technical Debt");
+        assigneeComboBox.removeAllItems();
+        TerminalX.users.forEach(user -> {
+            if (user.type != User.AccountType.Customer)
+                assigneeComboBox.addItem(user.name);
+        });
+
+        if (issue.assignee != null)
+            assigneeComboBox.setSelectedItem(TerminalX.getUserByUUID(issue.assignee).name);
 
         reporterLabel.setText(issue.submitted.toString());
-        typeComboBox.setSelectedItem(issue.type);
+        typeComboBox.setSelectedItem(issue.type.getName());
         idLabel.setText(issue.id.toString());
         titleTextField.setText(issue.title);
         descriptionTextArea.setText(issue.description);
-        priorityComboBox.setSelectedItem(issue.priority.toString());
-        statusComboBox.setSelectedItem(issue.status.toString());
-        assigneeComboBox.setSelectedItem(issue.assignee.toString());
+        priorityComboBox.setSelectedItem(issue.priority.getName());
+        statusComboBox.setSelectedItem(issue.status.getName());
         notesTextArea.setText(issue.devNotes);
         updatedLabel.setText(issue.updated.toString());
 
@@ -59,11 +62,14 @@ public class EmployeeIssueDetailsForm extends JFrame {
         });
 
         updateButton.addActionListener(actionEvent -> {
+            issue.title = titleTextField.getText();
+            issue.description = descriptionTextArea.getText();
             issue.type = Enum.valueOf(Issue.IssueType.class, typeComboBox.getSelectedItem().toString().replace(' ', '_'));
             issue.devNotes = notesTextArea.getText();
-            issue.assignee = Enum.valueOf(Issue.Assignee.class, assigneeComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.assignee = TerminalX.getUUIDByName(assigneeComboBox.getSelectedItem().toString());
             issue.status = Enum.valueOf(Issue.Status.class, statusComboBox.getSelectedItem().toString().replace(' ', '_'));
             issue.priority = Enum.valueOf(Issue.Priority.class, priorityComboBox.getSelectedItem().toString().replace(' ', '_'));
+
             try {
                 TerminalX.replaceIssue(issue);
             } catch (IOException e) {

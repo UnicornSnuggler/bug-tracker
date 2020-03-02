@@ -1,5 +1,6 @@
 package resources.forms;
 
+import java.io.IOException;
 import main.Issue;
 import main.TerminalX;
 
@@ -47,6 +48,15 @@ public class CustomerIssueDetailsForm extends JFrame {
 
         backButton.addActionListener(actionEvent -> {
             TerminalX.openMenuForm();
+        });
+
+        deleteButton.addActionListener(actionEvent -> {
+            try {
+                TerminalX.deleteIssue(issue);
+                TerminalX.openMenuForm();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 }

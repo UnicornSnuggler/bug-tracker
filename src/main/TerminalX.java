@@ -44,6 +44,15 @@ public class TerminalX {
         writer.close();
     }
 
+    public static void deleteIssue(Issue issue) throws IOException {
+        issues.remove(issue);
+
+        FileWriter writer = new FileWriter("./issues.json");
+        gson.toJson(issues, writer);
+        writer.flush();
+        writer.close();
+    }
+
     private static ArrayList<Issue> getIssues() {
         ArrayList<Issue> userIssues;
 

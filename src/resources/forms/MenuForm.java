@@ -26,7 +26,7 @@ public class MenuForm extends JFrame {
 
         for (Issue issue : issues) {
             model.addElement(TerminalX.prettifyUUID(issue.id) + " " +
-                    String.format("%21s", "(" + issue.status.getName() + ")") + " " +
+                    String.format("%23s", "(" + issue.status.getName() + ")") + " " +
                     issue.title);
         }
 

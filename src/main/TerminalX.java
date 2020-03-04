@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class TerminalX {
@@ -112,6 +113,30 @@ public class TerminalX {
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen.pack();
         screen.setVisible(true);
+    }
+
+    public static Project getProjectObj(UUID projectUUID) {
+        Project ret = null;
+
+        for (Project project : projects) {
+            if (projectUUID.equals(project.id)) {
+                ret = project;
+                break;
+            }
+        }
+        return ret;
+    }
+
+    public static User getUserObj(UUID userUUID) {
+        User ret = null;
+
+        for (User user : users) {
+            if (userUUID.equals(user.id)) {
+                ret = user;
+                break;
+            }
+        }
+        return ret;
     }
 
     public static void logout() {

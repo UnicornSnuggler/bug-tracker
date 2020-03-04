@@ -64,6 +64,10 @@ public class TerminalX {
         writer.close();
     }
 
+    public static String prettifyUUID(UUID uuid) {
+        return uuid.toString().substring(uuid.toString().length() - 7);
+    }
+
     public static User getUserByUUID(UUID uuid) {
         return users.stream().filter(user -> user.id.equals(uuid)).findFirst().get();
     }

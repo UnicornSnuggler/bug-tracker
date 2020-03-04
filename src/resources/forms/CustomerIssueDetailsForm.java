@@ -38,7 +38,7 @@ public class CustomerIssueDetailsForm extends JFrame {
 
         reporterLabel.setText("<html><u style='color: blue'>" + reporter.name + "</u></html>");
         typeComboBox.setSelectedItem(issue.type.getName());
-        idLabel.setText(issue.id.toString());
+        idLabel.setText(TerminalX.prettifyUUID(issue.id));
         titleTextField.setText(issue.title);
         descriptionTextArea.setText(issue.description);
         priorityLabel.setText(issue.priority.getName());

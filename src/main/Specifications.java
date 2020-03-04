@@ -1,9 +1,9 @@
 package main;
 
 public class Specifications {
-    OS operatingSystem;
-    String javaVersion;
-    String softwareVersion;
+    public OS operatingSystem;
+    public String javaVersion;
+    public String softwareVersion;
 
     public enum OS {
         Windows("Windows"),

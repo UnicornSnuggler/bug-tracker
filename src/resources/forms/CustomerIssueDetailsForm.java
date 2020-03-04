@@ -37,12 +37,12 @@ public class CustomerIssueDetailsForm extends JFrame {
         userLabel.setText("Signed in as " + name);
 
         reporterLabel.setText("<html><u style='color: blue'>" + reporter.name + "</u></html>");
-        typeComboBox.setSelectedItem(issue.type);
+        typeComboBox.setSelectedItem(issue.type.getName());
         idLabel.setText(issue.id.toString());
         titleTextField.setText(issue.title);
         descriptionTextArea.setText(issue.description);
-        priorityLabel.setText(issue.priority.toString());
-        statusLabel.setText(issue.status.toString());
+        priorityLabel.setText(issue.priority.getName());
+        statusLabel.setText(issue.status.getName());
         assigneeLabel.setText("Unassigned");
         notesTextArea.setText(issue.devNotes);
         updatedLabel.setText(issue.updated.toString());
@@ -90,6 +90,19 @@ public class CustomerIssueDetailsForm extends JFrame {
         deleteButton.addActionListener(actionEvent -> {
             try {
                 TerminalX.deleteIssue(issue);
+                TerminalX.openMenuForm();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        updateButton.addActionListener(actionEvent -> {
+            issue.type = Enum.valueOf(Issue.IssueType.class, typeComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.title = titleTextField.getText();
+            issue.description = descriptionTextArea.getText();
+
+            try {
+                TerminalX.updateIssue(issue);
                 TerminalX.openMenuForm();
             } catch (IOException e) {
                 e.printStackTrace();

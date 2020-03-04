@@ -37,19 +37,13 @@ public class EmployeeIssueDetailsForm extends JFrame {
 
         userLabel.setText("Signed in as " + name);
 
-        typeComboBox.removeAllItems();
-        typeComboBox.addItem("Bug");
-        typeComboBox.addItem("Request");
-        typeComboBox.addItem("Investigation");
-        typeComboBox.addItem("Technical Debt");
-
         reporterLabel.setText("<html><u style='color: blue'>" + reporter.name + "</u></html>");
-        typeComboBox.setSelectedItem(issue.type);
+        typeComboBox.setSelectedItem(issue.type.getName());
         idLabel.setText(issue.id.toString());
         titleTextField.setText(issue.title);
         descriptionTextArea.setText(issue.description);
-        priorityComboBox.setSelectedItem(issue.priority.toString());
-        statusComboBox.setSelectedItem(issue.status.toString());
+        priorityComboBox.setSelectedItem(issue.priority.getName());
+        statusComboBox.setSelectedItem(issue.status.getName());
         assigneeLabel.setText("Unassigned");
         notesTextArea.setText(issue.devNotes);
         updatedLabel.setText(issue.updated.toString());

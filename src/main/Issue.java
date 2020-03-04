@@ -10,11 +10,11 @@ public class Issue {
     public UUID reporter;
     public UUID assignee = null;
     public IssueType type;
-    public Priority priority = Priority.Low;
+    public Priority priority = Priority.Medium;
     public String title;
     public String description;
     public Status status = Status.Backlog;
-    public String devNotes = "";
+    public String devNotes = " ";
 
     public enum IssueType {
         Bug("Bug"),

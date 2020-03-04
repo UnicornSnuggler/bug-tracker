@@ -16,7 +16,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class TerminalX {
-    private static ArrayList<User> users;
+    public static ArrayList<User> users;
     private static ArrayList<Project> projects;
     private static ArrayList<Issue> issues;
     public static User verifiedUser;
@@ -45,6 +45,16 @@ public class TerminalX {
         writer.close();
     }
 
+    public static void replaceIssue(Issue issue) throws IOException {
+        issues.remove(issues.indexOf(issues.stream().filter(x -> x.id.equals(issue.id)).findFirst().get()));
+        issues.add(issue);
+      
+        FileWriter writer = new FileWriter("./issues.json");
+        gson.toJson(issues, writer);
+        writer.flush();
+        writer.close();
+    }
+  
     public static void deleteIssue(Issue issue) throws IOException {
         issues.remove(issue);
 
@@ -54,6 +64,14 @@ public class TerminalX {
         writer.close();
     }
 
+    public static User getUserByUUID(UUID uuid) {
+        return users.stream().filter(user -> user.id.equals(uuid)).findFirst().get();
+    }
+
+    public static UUID getUUIDByName(String name) {
+        return users.stream().filter(user -> user.name.equals(name)).findFirst().get().id;
+    }
+      
     public static void updateIssue(Issue issue) throws IOException {
         FileWriter writer = new FileWriter("./issues.json");
         gson.toJson(issues, writer);
@@ -65,7 +83,7 @@ public class TerminalX {
         ArrayList<Issue> userIssues;
 
         if (verifiedUser.type == User.AccountType.Customer) {
-            userIssues = issues.stream().filter(issue -> issue.reporter.equals(verifiedUser.id)).collect(Collectors.toCollection(ArrayList::new));
+            userIssues = issues.stream().filter(issue -> issue.reporter.equals(verifiedUser.name)).collect(Collectors.toCollection(ArrayList::new));
         } else {
             userIssues = issues;
         }

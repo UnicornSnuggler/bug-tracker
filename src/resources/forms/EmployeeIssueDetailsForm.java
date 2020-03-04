@@ -8,8 +8,10 @@ import main.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class EmployeeIssueDetailsForm extends JFrame {
+    private Issue issue;
     private JButton logoutButton;
     private JComboBox typeComboBox;
     private JTextArea descriptionTextArea;
@@ -18,7 +20,6 @@ public class EmployeeIssueDetailsForm extends JFrame {
     private JLabel reporterLabel;
     private JLabel idLabel;
     private JLabel updatedLabel;
-    private JLabel assigneeLabel;
     private JLabel userLabel;
     private JButton updateButton;
     private JButton deleteButton;
@@ -26,14 +27,24 @@ public class EmployeeIssueDetailsForm extends JFrame {
     private JTextField titleTextField;
     private JComboBox statusComboBox;
     private JComboBox priorityComboBox;
-    private JButton assignButton;
+    private JComboBox assigneeComboBox;
 
     public EmployeeIssueDetailsForm(String name, Issue issue) {
+        this.issue = issue;
         content.setMaximumSize(new Dimension(650, 500));
         setContentPane(content);
 
         User reporter = TerminalX.getUserObj(issue.reporter);
         Project reporterProject = TerminalX.getProjectObj(reporter.project);
+
+        assigneeComboBox.removeAllItems();
+        TerminalX.users.forEach(user -> {
+            if (user.type != User.AccountType.Customer)
+                assigneeComboBox.addItem(user.name);
+        });
+
+        if (issue.assignee != null)
+            assigneeComboBox.setSelectedItem(TerminalX.getUserByUUID(issue.assignee).name);
 
         userLabel.setText("Signed in as " + name);
 
@@ -44,7 +55,6 @@ public class EmployeeIssueDetailsForm extends JFrame {
         descriptionTextArea.setText(issue.description);
         priorityComboBox.setSelectedItem(issue.priority.getName());
         statusComboBox.setSelectedItem(issue.status.getName());
-        assigneeLabel.setText("Unassigned");
         notesTextArea.setText(issue.devNotes);
         updatedLabel.setText(issue.updated.toString());
 
@@ -62,25 +72,6 @@ public class EmployeeIssueDetailsForm extends JFrame {
                 "</html>"
         );
 
-        if (issue.assignee != null) {
-            User assignee = TerminalX.getUserObj(issue.assignee);
-            Project assigneeProject = TerminalX.getProjectObj(assignee.project);
-
-            assigneeLabel.setText("<html><u style='color: blue'>" + assignee.name + "</u></html>");
-
-            assigneeLabel.setToolTipText(
-                "<html>" +
-                assignee.emailAddress + "<br />" +
-                assignee.phoneNumber + "<br />" +
-                assignee.type.getName() + " (" + assigneeProject.name + ")" + "<br />" +
-                "<br />" +
-                "OS: " + assignee.specifications.operatingSystem.getName() + "<br />" +
-                "Java: " + assignee.specifications.javaVersion + "<br />" +
-                "TerminalX: " + assignee.specifications.softwareVersion +
-                "</html>"
-            );
-        };
-
         logoutButton.addActionListener(actionEvent -> {
             TerminalX.logout();
         });
@@ -89,6 +80,24 @@ public class EmployeeIssueDetailsForm extends JFrame {
             TerminalX.openMenuForm();
         });
 
+        updateButton.addActionListener(actionEvent -> {
+            issue.title = titleTextField.getText();
+            issue.description = descriptionTextArea.getText();
+            issue.type = Enum.valueOf(Issue.IssueType.class, typeComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.devNotes = notesTextArea.getText();
+            issue.assignee = TerminalX.getUUIDByName(assigneeComboBox.getSelectedItem().toString());
+            issue.status = Enum.valueOf(Issue.Status.class, statusComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.priority = Enum.valueOf(Issue.Priority.class, priorityComboBox.getSelectedItem().toString().replace(' ', '_'));
+
+            try {
+                TerminalX.replaceIssue(issue);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            TerminalX.openMenuForm();
+        });
+      
         deleteButton.addActionListener(actionEvent -> {
             try {
                 TerminalX.deleteIssue(issue);

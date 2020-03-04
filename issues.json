@@ -60,20 +60,7 @@
     "priority": "Medium",
     "title": "Double-clicking on the \"Submit\" button freezes the program.",
     "description": "I was trying to make a submission and I double-clicked the \"Submit\" button...  It broke the program and it just hung forever.  I was able to restart it and successfully make my submission with a single-click, but this is an annoying issue that needs to be fixed immediately.",
-    "status": "Ready_for_Testing",
-    "devNotes": "Fixed the issue.  Code is now awaiting review."
-  },
-  {
-    "id": "8b4bd171-0a93-4a6e-8fac-6040ae18beba",
-    "submitted": "Mar 3, 2020, 10:41:37 PM",
-    "updated": "Mar 3, 2020, 10:52:01 PM",
-    "reporter": "95c5d94b-87ba-4173-be82-6c041a09db93",
-    "assignee": "6013882e-5d94-4c63-a7d4-c24514a6c3d7",
-    "type": "Request",
-    "priority": "Medium",
-    "title": "Add user work phone to details.",
-    "description": "Cell phones aren\u0027t always the best way to reach people.  Could you add work phones as well?  I\u0027d really llike to be able to see this information to try and get ahold of people.  It\u0027s urgent!  Please, involve the CIA if you have to!",
-    "status": "Archived",
-    "devNotes": "This is utterly impossible and there\u0027s no way we\u0027d be able to make this happen without involving the CIA.  Archiving it accordingly."
+    "status": "Backlog",
+    "devNotes": ""
   }
 ]

@@ -58,5 +58,18 @@ public class CustomerIssueDetailsForm extends JFrame {
                 e.printStackTrace();
             }
         });
+
+        updateButton.addActionListener(actionEvent -> {
+            issue.type = Enum.valueOf(Issue.IssueType.class, typeComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.title = titleTextField.getText();
+            issue.description = descriptionTextArea.getText();
+
+            try {
+                TerminalX.updateIssue(issue);
+                TerminalX.openMenuForm();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

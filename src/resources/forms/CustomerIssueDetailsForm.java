@@ -8,6 +8,7 @@ import main.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Date;
 
 public class CustomerIssueDetailsForm extends JFrame {
     private JPanel content;
@@ -31,8 +32,8 @@ public class CustomerIssueDetailsForm extends JFrame {
         content.setMaximumSize(new Dimension(650, 500));
         setContentPane(content);
 
-        User reporter = TerminalX.getUserObj(issue.reporter);
-        Project reporterProject = TerminalX.getProjectObj(reporter.project);
+        User reporter = TerminalX.getUserByUUID(issue.reporter);
+        Project reporterProject = TerminalX.getProjectByUUID(reporter.project);
 
         userLabel.setText("Signed in as " + name);
 
@@ -62,8 +63,8 @@ public class CustomerIssueDetailsForm extends JFrame {
         );
 
         if (issue.assignee != null) {
-            User assignee = TerminalX.getUserObj(issue.assignee);
-            Project assigneeProject = TerminalX.getProjectObj(assignee.project);
+            User assignee = TerminalX.getUserByUUID(issue.assignee);
+            Project assigneeProject = TerminalX.getProjectByUUID(assignee.project);
 
             assigneeLabel.setText("<html><u style='color: blue'>" + assignee.name + "</u></html>");
             assigneeLabel.setToolTipText(
@@ -100,6 +101,7 @@ public class CustomerIssueDetailsForm extends JFrame {
             issue.type = Enum.valueOf(Issue.IssueType.class, typeComboBox.getSelectedItem().toString().replace(' ', '_'));
             issue.title = titleTextField.getText();
             issue.description = descriptionTextArea.getText();
+            issue.updated = new Date();
 
             try {
                 TerminalX.updateIssue(issue);

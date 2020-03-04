@@ -8,7 +8,7 @@ import main.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
+import java.util.Date;
 
 public class EmployeeIssueDetailsForm extends JFrame {
     private Issue issue;
@@ -34,8 +34,8 @@ public class EmployeeIssueDetailsForm extends JFrame {
         content.setMaximumSize(new Dimension(650, 500));
         setContentPane(content);
 
-        User reporter = TerminalX.getUserObj(issue.reporter);
-        Project reporterProject = TerminalX.getProjectObj(reporter.project);
+        User reporter = TerminalX.getUserByUUID(issue.reporter);
+        Project reporterProject = TerminalX.getProjectByUUID(reporter.project);
 
         assigneeComboBox.removeAllItems();
         TerminalX.users.forEach(user -> {
@@ -45,6 +45,8 @@ public class EmployeeIssueDetailsForm extends JFrame {
 
         if (issue.assignee != null)
             assigneeComboBox.setSelectedItem(TerminalX.getUserByUUID(issue.assignee).name);
+        else
+            assigneeComboBox.setSelectedItem(TerminalX.getUserByUUID(TerminalX.verifiedUser.id).name);
 
         userLabel.setText("Signed in as " + name);
 
@@ -88,9 +90,10 @@ public class EmployeeIssueDetailsForm extends JFrame {
             issue.assignee = TerminalX.getUUIDByName(assigneeComboBox.getSelectedItem().toString());
             issue.status = Enum.valueOf(Issue.Status.class, statusComboBox.getSelectedItem().toString().replace(' ', '_'));
             issue.priority = Enum.valueOf(Issue.Priority.class, priorityComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.updated = new Date();
 
             try {
-                TerminalX.replaceIssue(issue);
+                TerminalX.updateIssue(issue);
             } catch (IOException e) {
                 e.printStackTrace();
             }

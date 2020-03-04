@@ -45,7 +45,7 @@ public class TerminalX {
         writer.close();
     }
 
-    public static void replaceIssue(Issue issue) throws IOException {
+    public static void updateIssue(Issue issue) throws IOException {
         issues.remove(issues.indexOf(issues.stream().filter(x -> x.id.equals(issue.id)).findFirst().get()));
         issues.add(issue);
       
@@ -71,19 +71,16 @@ public class TerminalX {
     public static UUID getUUIDByName(String name) {
         return users.stream().filter(user -> user.name.equals(name)).findFirst().get().id;
     }
-      
-    public static void updateIssue(Issue issue) throws IOException {
-        FileWriter writer = new FileWriter("./issues.json");
-        gson.toJson(issues, writer);
-        writer.flush();
-        writer.close();
+
+    public static Project getProjectByUUID(UUID uuid) {
+        return projects.stream().filter(project -> project.id.equals(uuid)).findFirst().get();
     }
 
     private static ArrayList<Issue> getIssues() {
         ArrayList<Issue> userIssues;
 
         if (verifiedUser.type == User.AccountType.Customer) {
-            userIssues = issues.stream().filter(issue -> issue.reporter.equals(verifiedUser.name)).collect(Collectors.toCollection(ArrayList::new));
+            userIssues = issues.stream().filter(issue -> issue.reporter.equals(verifiedUser.id)).collect(Collectors.toCollection(ArrayList::new));
         } else {
             userIssues = issues;
         }
@@ -138,30 +135,6 @@ public class TerminalX {
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen.pack();
         screen.setVisible(true);
-    }
-
-    public static Project getProjectObj(UUID projectUUID) {
-        Project ret = null;
-
-        for (Project project : projects) {
-            if (projectUUID.equals(project.id)) {
-                ret = project;
-                break;
-            }
-        }
-        return ret;
-    }
-
-    public static User getUserObj(UUID userUUID) {
-        User ret = null;
-
-        for (User user : users) {
-            if (userUUID.equals(user.id)) {
-                ret = user;
-                break;
-            }
-        }
-        return ret;
     }
 
     public static void logout() {

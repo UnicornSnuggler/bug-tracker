@@ -37,7 +37,7 @@ public class MenuForm extends JFrame {
         issueList.setModel(model);
 
         sortByComboBox.removeAllItems();
-        //sortByComboBox.addItem("ID");
+        sortByComboBox.addItem("ID");
         sortByComboBox.addItem("Status");
         sortByComboBox.addItem("Title");
 

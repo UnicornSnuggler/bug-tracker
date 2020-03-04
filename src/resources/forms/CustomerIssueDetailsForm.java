@@ -1,7 +1,10 @@
 package resources.forms;
 
+import java.io.IOException;
 import main.Issue;
+import main.Project;
 import main.TerminalX;
+import main.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,18 +31,53 @@ public class CustomerIssueDetailsForm extends JFrame {
         content.setMaximumSize(new Dimension(650, 500));
         setContentPane(content);
 
+        User reporter = TerminalX.getUserObj(issue.reporter);
+        Project reporterProject = TerminalX.getProjectObj(reporter.project);
+
         userLabel.setText("Signed in as " + name);
 
-        reporterLabel.setText(issue.submitted.toString());
-        typeComboBox.setSelectedItem(issue.type);
+        reporterLabel.setText("<html><u style='color: blue'>" + reporter.name + "</u></html>");
+        typeComboBox.setSelectedItem(issue.type.getName());
         idLabel.setText(issue.id.toString());
         titleTextField.setText(issue.title);
         descriptionTextArea.setText(issue.description);
-        priorityLabel.setText(issue.priority.toString());
-        statusLabel.setText(issue.status.toString());
-        assigneeLabel.setText(issue.assignee != null ? issue.assignee.toString() : "Unassigned");
+        priorityLabel.setText(issue.priority.getName());
+        statusLabel.setText(issue.status.getName());
+        assigneeLabel.setText("Unassigned");
         notesTextArea.setText(issue.devNotes);
         updatedLabel.setText(issue.updated.toString());
+
+        reporterLabel.setToolTipText(
+                "<html>" +
+                reporter.emailAddress + "<br />" +
+                reporter.phoneNumber + "<br />" +
+                reporter.type.getName() + " (" + reporterProject.name + ")" + "<br />" +
+                "<br />" +
+                "OS: " + reporter.specifications.operatingSystem.getName() + "<br />" +
+                "Java: " + reporter.specifications.javaVersion + "<br />" +
+                "TerminalX: " + reporter.specifications.softwareVersion + "<br />" +
+                "<br />" +
+                "Reported On: " + issue.submitted.toString() +
+                "</html>"
+        );
+
+        if (issue.assignee != null) {
+            User assignee = TerminalX.getUserObj(issue.assignee);
+            Project assigneeProject = TerminalX.getProjectObj(assignee.project);
+
+            assigneeLabel.setText("<html><u style='color: blue'>" + assignee.name + "</u></html>");
+            assigneeLabel.setToolTipText(
+                "<html>" +
+                assignee.name + "<br />" +
+                assignee.phoneNumber + "<br />" +
+                assignee.type.getName() + " (" + assigneeProject.name + ")" + "<br />" +
+                "<br />" +
+                "OS: " + assignee.specifications.operatingSystem.getName() + "<br />" +
+                "Java: " + assignee.specifications.javaVersion + "<br />" +
+                "TerminalX: " + assignee.specifications.softwareVersion +
+                "</html>"
+            );
+        };
 
         logoutButton.addActionListener(actionEvent -> {
             TerminalX.logout();
@@ -47,6 +85,28 @@ public class CustomerIssueDetailsForm extends JFrame {
 
         backButton.addActionListener(actionEvent -> {
             TerminalX.openMenuForm();
+        });
+
+        deleteButton.addActionListener(actionEvent -> {
+            try {
+                TerminalX.deleteIssue(issue);
+                TerminalX.openMenuForm();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        updateButton.addActionListener(actionEvent -> {
+            issue.type = Enum.valueOf(Issue.IssueType.class, typeComboBox.getSelectedItem().toString().replace(' ', '_'));
+            issue.title = titleTextField.getText();
+            issue.description = descriptionTextArea.getText();
+
+            try {
+                TerminalX.updateIssue(issue);
+                TerminalX.openMenuForm();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 }

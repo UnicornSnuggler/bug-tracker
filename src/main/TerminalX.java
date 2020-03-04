@@ -48,6 +48,15 @@ public class TerminalX {
     public static void replaceIssue(Issue issue) throws IOException {
         issues.remove(issues.indexOf(issues.stream().filter(x -> x.id.equals(issue.id)).findFirst().get()));
         issues.add(issue);
+      
+        FileWriter writer = new FileWriter("./issues.json");
+        gson.toJson(issues, writer);
+        writer.flush();
+        writer.close();
+    }
+  
+    public static void deleteIssue(Issue issue) throws IOException {
+        issues.remove(issue);
 
         FileWriter writer = new FileWriter("./issues.json");
         gson.toJson(issues, writer);
@@ -61,6 +70,13 @@ public class TerminalX {
 
     public static UUID getUUIDByName(String name) {
         return users.stream().filter(user -> user.name.equals(name)).findFirst().get().id;
+    }
+      
+    public static void updateIssue(Issue issue) throws IOException {
+        FileWriter writer = new FileWriter("./issues.json");
+        gson.toJson(issues, writer);
+        writer.flush();
+        writer.close();
     }
 
     private static ArrayList<Issue> getIssues() {
@@ -122,6 +138,30 @@ public class TerminalX {
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screen.pack();
         screen.setVisible(true);
+    }
+
+    public static Project getProjectObj(UUID projectUUID) {
+        Project ret = null;
+
+        for (Project project : projects) {
+            if (projectUUID.equals(project.id)) {
+                ret = project;
+                break;
+            }
+        }
+        return ret;
+    }
+
+    public static User getUserObj(UUID userUUID) {
+        User ret = null;
+
+        for (User user : users) {
+            if (userUUID.equals(user.id)) {
+                ret = user;
+                break;
+            }
+        }
+        return ret;
     }
 
     public static void logout() {

@@ -1,6 +1,8 @@
 package resources.forms;
 
+import java.io.IOException;
 import main.Issue;
+import main.Project;
 import main.TerminalX;
 import main.User;
 
@@ -32,7 +34,8 @@ public class EmployeeIssueDetailsForm extends JFrame {
         content.setMaximumSize(new Dimension(650, 500));
         setContentPane(content);
 
-        userLabel.setText("Signed in as " + name);
+        User reporter = TerminalX.getUserObj(issue.reporter);
+        Project reporterProject = TerminalX.getProjectObj(reporter.project);
 
         assigneeComboBox.removeAllItems();
         TerminalX.users.forEach(user -> {
@@ -43,7 +46,9 @@ public class EmployeeIssueDetailsForm extends JFrame {
         if (issue.assignee != null)
             assigneeComboBox.setSelectedItem(TerminalX.getUserByUUID(issue.assignee).name);
 
-        reporterLabel.setText(issue.submitted.toString());
+        userLabel.setText("Signed in as " + name);
+
+        reporterLabel.setText("<html><u style='color: blue'>" + reporter.name + "</u></html>");
         typeComboBox.setSelectedItem(issue.type.getName());
         idLabel.setText(issue.id.toString());
         titleTextField.setText(issue.title);
@@ -52,6 +57,20 @@ public class EmployeeIssueDetailsForm extends JFrame {
         statusComboBox.setSelectedItem(issue.status.getName());
         notesTextArea.setText(issue.devNotes);
         updatedLabel.setText(issue.updated.toString());
+
+        reporterLabel.setToolTipText(
+                "<html>" +
+                reporter.emailAddress + "<br />" +
+                reporter.phoneNumber + "<br />" +
+                reporter.type.getName() + " (" + reporterProject.name + ")" + "<br />" +
+                "<br />" +
+                "OS: " + reporter.specifications.operatingSystem.getName() + "<br />" +
+                "Java: " + reporter.specifications.javaVersion + "<br />" +
+                "TerminalX: " + reporter.specifications.softwareVersion + "<br />" +
+                "<br />" +
+                "Reported On: " + issue.submitted.toString() +
+                "</html>"
+        );
 
         logoutButton.addActionListener(actionEvent -> {
             TerminalX.logout();
@@ -78,6 +97,14 @@ public class EmployeeIssueDetailsForm extends JFrame {
 
             TerminalX.openMenuForm();
         });
-
+      
+        deleteButton.addActionListener(actionEvent -> {
+            try {
+                TerminalX.deleteIssue(issue);
+                TerminalX.openMenuForm();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

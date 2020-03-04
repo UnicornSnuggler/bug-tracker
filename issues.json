@@ -61,5 +61,101 @@
     "description": "I was trying to make a submission and I double-clicked the \"Submit\" button...  It broke the program and it just hung forever.  I was able to restart it and successfully make my submission with a single-click, but this is an annoying issue that needs to be fixed immediately.",
     "status": "Backlog",
     "devNotes": ""
+  },
+  {
+    "id": "8c3904de-4a04-47ad-b657-3c3e37f27976",
+    "submitted": "Mar 3, 2020, 4:50:13 PM",
+    "updated": "Mar 3, 2020, 4:50:13 PM",
+    "reporter": "0aea7fe8-6a68-43bb-84d7-6ba702763ef6",
+    "type": "Bug",
+    "priority": "Low",
+    "title": "This is the TITLE for a bug issue",
+    "description": "This is the Description for a bug issue",
+    "status": "Backlog",
+    "devNotes": ""
+  },
+  {
+    "id": "1469516e-86d9-422e-a4f6-1c968f9f6d76",
+    "submitted": "Mar 3, 2020, 4:52:55 PM",
+    "updated": "Mar 3, 2020, 4:52:55 PM",
+    "reporter": "0aea7fe8-6a68-43bb-84d7-6ba702763ef6",
+    "type": "Request",
+    "priority": "Low",
+    "title": "This is the TITLE for a Request issue",
+    "description": "This is the DESCRIPTION for a Request issue",
+    "status": "Backlog",
+    "devNotes": ""
+  },
+  {
+    "id": "a965aaf9-d90b-4bbb-90ad-e4782d975e66",
+    "submitted": "Mar 3, 2020, 4:54:21 PM",
+    "updated": "Mar 3, 2020, 4:54:21 PM",
+    "reporter": "0aea7fe8-6a68-43bb-84d7-6ba702763ef6",
+    "type": "Investigation",
+    "priority": "Low",
+    "title": "This is the TITLE for Investigation issue",
+    "description": "This is the DESCRIPTION for Investigation issue",
+    "status": "Backlog",
+    "devNotes": ""
+  },
+  {
+    "id": "21521899-7df7-4abe-b5cf-7783738dff17",
+    "submitted": "Mar 3, 2020, 4:55:35 PM",
+    "updated": "Mar 3, 2020, 4:55:35 PM",
+    "reporter": "0aea7fe8-6a68-43bb-84d7-6ba702763ef6",
+    "type": "Technical_Debt",
+    "priority": "Low",
+    "title": "This is the TITLE for Technical Debt issue",
+    "description": "This is the DESCRIPTION for Technical Debt issue",
+    "status": "Backlog",
+    "devNotes": ""
+  },
+  {
+    "id": "74d68920-51fc-49f4-bfe7-06fde08d7f2f",
+    "submitted": "Mar 3, 2020, 4:58:51 PM",
+    "updated": "Mar 3, 2020, 4:58:51 PM",
+    "reporter": "0aea7fe8-6a68-43bb-84d7-6ba702763ef6",
+    "type": "Bug",
+    "priority": "Low",
+    "title": "This is the BEFORE TITLE for an issue that is going to be updated",
+    "description": "This is the DESCRIPTION for an issue that is going to be updated",
+    "status": "Backlog",
+    "devNotes": ""
+  },
+  {
+    "id": "13fdceee-f628-44ea-848a-81e57072c63c",
+    "submitted": "Mar 3, 2020, 5:00:25 PM",
+    "updated": "Mar 3, 2020, 5:00:25 PM",
+    "reporter": "0aea7fe8-6a68-43bb-84d7-6ba702763ef6",
+    "type": "Request",
+    "priority": "Low",
+    "title": "This is the TITLE for an issue that is going to be test Priority during initial assignment",
+    "description": "This is the DESCRIPTION for an issue that is going to be test Priority during initial assignment ",
+    "status": "Backlog",
+    "devNotes": ""
+  },
+  {
+    "id": "acb87318-6c44-4c1d-a1b4-ffe0ccc977a5",
+    "submitted": "Mar 3, 2020, 5:02:09 PM",
+    "updated": "Mar 3, 2020, 5:02:09 PM",
+    "reporter": "0aea7fe8-6a68-43bb-84d7-6ba702763ef6",
+    "type": "Request",
+    "priority": "Low",
+    "title": "This is the TITLE for an issue that is going to test Status during initial assignment",
+    "description": "This is the DESCRIPTION for an issue that is going to test Status during initial assignment  ",
+    "status": "Backlog",
+    "devNotes": ""
+  },
+  {
+    "id": "a70c57a4-7ff2-4708-b27d-5c00a77dcd69",
+    "submitted": "Mar 3, 2020, 5:03:04 PM",
+    "updated": "Mar 3, 2020, 5:03:04 PM",
+    "reporter": "0aea7fe8-6a68-43bb-84d7-6ba702763ef6",
+    "type": "Bug",
+    "priority": "Low",
+    "title": "Assign to Me",
+    "description": "Assign to Me DESCRIPTION",
+    "status": "Backlog",
+    "devNotes": ""
   }
 ]

@@ -7,6 +7,7 @@ import main.TerminalX;
 import javax.swing.*;
 import java.util.ArrayList;
 
+
 public class MenuForm extends JFrame {
     private JButton submitIssueButton;
     private JButton logOutButton;
@@ -23,14 +24,22 @@ public class MenuForm extends JFrame {
 
         DefaultListModel model = new DefaultListModel();
         for (Issue issue : issues) {
-            model.addElement(issue.title);
+
+
+            model.addElement("ID-here"
+                                + "  (" + issue.status + ")  "
+                                + issue.title);
         }
+
+
+
+
         issueList.setModel(model);
 
         sortByComboBox.removeAllItems();
-        sortByComboBox.addItem("ID");
+        //sortByComboBox.addItem("ID");
         sortByComboBox.addItem("Status");
-        sortByComboBox.addItem("Name");
+        sortByComboBox.addItem("Title");
 
         submitIssueButton.addActionListener(actionEvent -> {
             TerminalX.openSubmitIssueForm();

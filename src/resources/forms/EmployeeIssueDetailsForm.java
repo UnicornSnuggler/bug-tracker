@@ -50,7 +50,7 @@ public class EmployeeIssueDetailsForm extends JFrame {
 
         userLabel.setText("Signed in as " + name);
 
-        reporterLabel.setText("<html><u style='color: blue'>" + reporter.name + "</u></html>");
+        reporterLabel.setText("<html><u style='color: blue'>" + reporter.name + "</u> on " + TerminalX.prettifyDate(issue.submitted) + "</html>");
         typeComboBox.setSelectedItem(issue.type.getName());
         idLabel.setText(TerminalX.prettifyUUID(issue.id));
         titleTextField.setText(issue.title);
@@ -58,7 +58,7 @@ public class EmployeeIssueDetailsForm extends JFrame {
         priorityComboBox.setSelectedItem(issue.priority.getName());
         statusComboBox.setSelectedItem(issue.status.getName());
         notesTextArea.setText(issue.devNotes);
-        updatedLabel.setText(issue.updated.toString());
+        updatedLabel.setText(TerminalX.prettifyDate(issue.updated));
 
         reporterLabel.setToolTipText(
                 "<html>" +
@@ -68,9 +68,7 @@ public class EmployeeIssueDetailsForm extends JFrame {
                 "<br />" +
                 "OS: " + reporter.specifications.operatingSystem.getName() + "<br />" +
                 "Java: " + reporter.specifications.javaVersion + "<br />" +
-                "TerminalX: " + reporter.specifications.softwareVersion + "<br />" +
-                "<br />" +
-                "Reported On: " + issue.submitted.toString() +
+                "TerminalX: " + reporter.specifications.softwareVersion +
                 "</html>"
         );
 

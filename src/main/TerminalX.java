@@ -12,10 +12,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class TerminalX {
-    private static ArrayList<User> users;
+    public static ArrayList<User> users;
     private static ArrayList<Project> projects;
     private static ArrayList<Issue> issues;
     public static User verifiedUser;
@@ -44,6 +45,16 @@ public class TerminalX {
         writer.close();
     }
 
+    public static void updateIssue(Issue issue) throws IOException {
+        issues.remove(issues.indexOf(issues.stream().filter(x -> x.id.equals(issue.id)).findFirst().get()));
+        issues.add(issue);
+      
+        FileWriter writer = new FileWriter("./issues.json");
+        gson.toJson(issues, writer);
+        writer.flush();
+        writer.close();
+    }
+  
     public static void deleteIssue(Issue issue) throws IOException {
         issues.remove(issue);
 
@@ -51,6 +62,18 @@ public class TerminalX {
         gson.toJson(issues, writer);
         writer.flush();
         writer.close();
+    }
+
+    public static User getUserByUUID(UUID uuid) {
+        return users.stream().filter(user -> user.id.equals(uuid)).findFirst().get();
+    }
+
+    public static UUID getUUIDByName(String name) {
+        return users.stream().filter(user -> user.name.equals(name)).findFirst().get().id;
+    }
+
+    public static Project getProjectByUUID(UUID uuid) {
+        return projects.stream().filter(project -> project.id.equals(uuid)).findFirst().get();
     }
 
     private static ArrayList<Issue> getIssues() {

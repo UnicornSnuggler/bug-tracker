@@ -7,8 +7,6 @@ import main.TerminalX;
 import javax.swing.*;
 import java.io.IOException;
 
-import java.awt.Color;
-
 public class SubmitIssueForm extends JFrame {
     private JPanel content;
     private JButton logOutButton;
@@ -18,8 +16,7 @@ public class SubmitIssueForm extends JFrame {
     private JButton submitButton;
     private JButton backButton;
     private JLabel userLabel;
-    private JTextField messageField;
-    private JLabel messageLabel;
+    private JLabel errorLabel;
 
     public SubmitIssueForm(String name) {
         setContentPane(content);
@@ -34,11 +31,7 @@ public class SubmitIssueForm extends JFrame {
         submitButton.addActionListener(actionEvent -> {
             if (titleField.getText().isBlank() || descriptionArea.getText().isBlank()) {
                 System.out.println("Invalid submission!");
-
-                //messageField.setText("Title and Description cannot be blank");
-                messageLabel.setText("Title and Description cannot be blank");
-                messageLabel.setForeground(Color.red);
-
+                errorLabel.setVisible(true);
             } else {
                 Issue issue = new Issue();
                 issue.reporter = TerminalX.verifiedUser.id;

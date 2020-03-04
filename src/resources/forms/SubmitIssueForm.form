@@ -13,7 +13,8 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="*Issue Type: "/>
+          <requestFocusEnabled value="false"/>
+          <text value="Issue Type: "/>
         </properties>
       </component>
       <component id="f0922" class="javax.swing.JLabel">
@@ -21,7 +22,7 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="*Title: "/>
+          <text value="Title: "/>
         </properties>
       </component>
       <component id="13ce3" class="javax.swing.JLabel">
@@ -29,7 +30,7 @@
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="*Description: "/>
+          <text value="Description: "/>
         </properties>
       </component>
       <component id="e5503" class="javax.swing.JComboBox" binding="issueTypeComboBox">
@@ -91,12 +92,15 @@
           <text value="Logout"/>
         </properties>
       </component>
-      <component id="4731a" class="javax.swing.JLabel" binding="messageLabel">
+      <component id="4731a" class="javax.swing.JLabel" binding="errorLabel">
         <constraints>
-          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Required Fields Are Marked With An *"/>
+          <foreground color="-4508618"/>
+          <horizontalTextPosition value="0"/>
+          <text value="Title and Description cannot be blank..."/>
+          <visible value="false"/>
         </properties>
       </component>
       <component id="7323f" class="javax.swing.JButton" binding="backButton" default-binding="true">

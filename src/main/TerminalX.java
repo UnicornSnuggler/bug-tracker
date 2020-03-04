@@ -10,8 +10,10 @@ import java.awt.*;
 import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -66,6 +68,11 @@ public class TerminalX {
 
     public static String prettifyUUID(UUID uuid) {
         return uuid.toString().substring(uuid.toString().length() - 7);
+    }
+
+    public static String prettifyDate(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        return formatter.format(date);
     }
 
     public static User getUserByUUID(UUID uuid) {

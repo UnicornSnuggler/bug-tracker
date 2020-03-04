@@ -5,6 +5,8 @@ import main.Issue;
 import main.TerminalX;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 
@@ -23,16 +25,12 @@ public class MenuForm extends JFrame {
         userLabel.setText("Signed in as " + name);
 
         DefaultListModel model = new DefaultListModel();
+
         for (Issue issue : issues) {
-
-
-            model.addElement("ID-here"
-                                + "  (" + issue.status + ")  "
-                                + issue.title);
+            model.addElement(TerminalX.prettifyUUID(issue.id) +
+                                " (" + issue.status.getName() + ") " +
+                                issue.title);
         }
-
-
-
 
         issueList.setModel(model);
 
@@ -56,6 +54,13 @@ public class MenuForm extends JFrame {
         issueList.addListSelectionListener(actionEvent -> {
             if (!issueList.isSelectionEmpty())
                 viewIssueButton.setEnabled(true);
+        });
+        issueList.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    TerminalX.openIssueDetailsForm(issueList.getSelectedIndex());
+                }
+            }
         });
         viewIssueButton.addActionListener(actionEvent -> {
             TerminalX.openIssueDetailsForm(issueList.getSelectedIndex());

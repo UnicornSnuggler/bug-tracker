@@ -39,18 +39,6 @@
     "devNotes": "Currently running tests to see if the error can be repeated."
   },
   {
-    "id": "aba785e6-200d-4c7e-9252-f7997f71c8b6",
-    "submitted": "Feb 20, 2020, 4:16:00 PM",
-    "updated": "Feb 20, 2020, 4:16:00 PM",
-    "reporter": "6013882e-5d94-4c63-a7d4-c24514a6c3d7",
-    "type": "Bug",
-    "priority": "Low",
-    "title": "Can\u0027t find \u0027Help\u0027 button...",
-    "description": "The latest update apparently makes the \u0027Help\u0027 button invisible because I can\u0027t seem to find it...  Please bring it back!",
-    "status": "Backlog",
-    "devNotes": ""
-  },
-  {
     "id": "4bf8479c-3707-483e-823c-6dbc80e2da28",
     "submitted": "Feb 20, 2020, 4:18:38 PM",
     "updated": "Feb 20, 2020, 4:18:38 PM",
@@ -62,5 +50,18 @@
     "description": "I was trying to make a submission and I double-clicked the \"Submit\" button...  It broke the program and it just hung forever.  I was able to restart it and successfully make my submission with a single-click, but this is an annoying issue that needs to be fixed immediately.",
     "status": "Backlog",
     "devNotes": ""
+  },
+  {
+    "id": "aba785e6-200d-4c7e-9252-f7997f71c8b6",
+    "submitted": "Feb 20, 2020, 4:16:00 PM",
+    "updated": "Mar 3, 2020, 11:27:40 PM",
+    "reporter": "6013882e-5d94-4c63-a7d4-c24514a6c3d7",
+    "assignee": "6013882e-5d94-4c63-a7d4-c24514a6c3d7",
+    "type": "Bug",
+    "priority": "Low",
+    "title": "Can\u0027t find \u0027Help\u0027 button...",
+    "description": "The latest update apparently makes the \u0027Help\u0027 button invisible because I can\u0027t seem to find it...  Please bring it back!",
+    "status": "In_Development",
+    "devNotes": "Making the help button visible again."
   }
 ]

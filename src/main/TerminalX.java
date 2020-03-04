@@ -94,7 +94,7 @@ public class TerminalX {
         ID
     }
 
-    public static ArrayList<Issue> getIssues(SortMethod method) {
+    public static ArrayList<Issue> getIssues(SortMethod method, Boolean showArchived) {
         ArrayList<Issue> userIssues;
 
         if (verifiedUser.type == User.AccountType.Customer) {
@@ -103,9 +103,15 @@ public class TerminalX {
             userIssues = issues;
         }
 
+        if (!showArchived)
+            userIssues = userIssues.stream().filter(issue -> !issue.status.equals(Issue.Status.Archived)).collect(Collectors.toCollection(ArrayList::new));
+
         Comparator comparator;
 
         switch (method) {
+            case Title:
+                comparator = Comparator.comparing((Issue a) -> a.title);
+                break;
             case Status:
                 comparator = Comparator.comparing((Issue a) -> a.status);
                 break;
@@ -113,11 +119,11 @@ public class TerminalX {
                 comparator = Comparator.comparing((Issue a) -> prettifyUUID(a.id));
                 break;
             default:
-                comparator = Comparator.comparing((Issue a) -> a.title);
+                comparator = null;
                 break;
         }
 
-        issues.sort(comparator);
+        userIssues.sort(comparator);
 
         return userIssues;
     }
@@ -134,7 +140,7 @@ public class TerminalX {
 
     private static void displayMenu() {
         screen = new JFrame("Main Menu");
-        screen.setContentPane(new MenuForm(verifiedUser.name, getIssues(Title)).getContentPane());
+        screen.setContentPane(new MenuForm(verifiedUser.name).getContentPane());
         screen.setMinimumSize(new Dimension(650, 500));
         screen.setMaximumSize(new Dimension(650, 500));
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -152,8 +158,7 @@ public class TerminalX {
         screen.setVisible(true);
     }
 
-    private static void displayIssueDetails(int index) {
-        Issue issue = getIssues(Title).get(index);
+    private static void displayIssueDetails(Issue issue) {
         Container content;
 
         if (verifiedUser.type == User.AccountType.Customer) {
@@ -201,9 +206,9 @@ public class TerminalX {
         displaySubmitIssue();
     }
 
-    public static void openIssueDetailsForm(int index) {
+    public static void openIssueDetailsForm(Issue issue) {
         screen.dispose();
-        displayIssueDetails(index);
+        displayIssueDetails(issue);
     }
 
     public static void openMenuForm() {

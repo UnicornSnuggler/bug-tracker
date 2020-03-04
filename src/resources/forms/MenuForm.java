@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 public class MenuForm extends JFrame {
+    private ArrayList<Issue> issues;
     private JButton submitIssueButton;
     private JButton logOutButton;
     private JComboBox<String> sortByComboBox;
@@ -20,7 +21,7 @@ public class MenuForm extends JFrame {
     private JLabel userLabel;
     private JList issueList;
 
-    public void drawIssues(ArrayList<Issue> issues) {
+    public void drawIssues() {
         DefaultListModel model = new DefaultListModel();
 
         for (Issue issue : issues) {
@@ -32,11 +33,12 @@ public class MenuForm extends JFrame {
         issueList.setModel(model);
     }
 
-    public MenuForm(String name, ArrayList<Issue> issues) {
+    public MenuForm(String name) {
+        issues = TerminalX.getIssues(TerminalX.SortMethod.valueOf(sortByComboBox.getSelectedItem().toString()), showArchivedCheckBox.isSelected());
         setContentPane(content);
         userLabel.setText("Signed in as " + name);
 
-        drawIssues(issues);
+        drawIssues();
 
         submitIssueButton.addActionListener(actionEvent -> {
             TerminalX.openSubmitIssueForm();
@@ -45,12 +47,12 @@ public class MenuForm extends JFrame {
             TerminalX.logout();
         });
         sortByComboBox.addActionListener(actionEvent -> {
-            TerminalX.SortMethod method = TerminalX.SortMethod.valueOf(sortByComboBox.getSelectedItem().toString());
-            System.out.println("Sorting method: " + method.toString());
-            drawIssues(TerminalX.getIssues(method));
+            issues = TerminalX.getIssues(TerminalX.SortMethod.valueOf(sortByComboBox.getSelectedItem().toString()), showArchivedCheckBox.isSelected());
+            drawIssues();
         });
         showArchivedCheckBox.addActionListener(actionEvent -> {
-            // Placeholder
+            issues = TerminalX.getIssues(TerminalX.SortMethod.valueOf(sortByComboBox.getSelectedItem().toString()), showArchivedCheckBox.isSelected());
+            drawIssues();
         });
         issueList.addListSelectionListener(actionEvent -> {
             if (!issueList.isSelectionEmpty())
@@ -59,12 +61,12 @@ public class MenuForm extends JFrame {
         issueList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
-                    TerminalX.openIssueDetailsForm(issueList.getSelectedIndex());
+                    TerminalX.openIssueDetailsForm(issues.get(issueList.getSelectedIndex()));
                 }
             }
         });
         viewIssueButton.addActionListener(actionEvent -> {
-            TerminalX.openIssueDetailsForm(issueList.getSelectedIndex());
+            TerminalX.openIssueDetailsForm(issues.get(issueList.getSelectedIndex()));
         });
     }
 }

@@ -2,7 +2,9 @@ package resources.forms;
 
 import java.io.IOException;
 import main.Issue;
+import main.Project;
 import main.TerminalX;
+import main.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +32,9 @@ public class EmployeeIssueDetailsForm extends JFrame {
         content.setMaximumSize(new Dimension(650, 500));
         setContentPane(content);
 
+        User reporter = TerminalX.getUserObj(issue.reporter);
+        Project reporterProject = TerminalX.getProjectObj(reporter.project);
+
         userLabel.setText("Signed in as " + name);
 
         typeComboBox.removeAllItems();
@@ -38,16 +43,49 @@ public class EmployeeIssueDetailsForm extends JFrame {
         typeComboBox.addItem("Investigation");
         typeComboBox.addItem("Technical Debt");
 
-        reporterLabel.setText(issue.submitted.toString());
+        reporterLabel.setText("<html><u style='color: blue'>" + reporter.name + "</u></html>");
         typeComboBox.setSelectedItem(issue.type);
         idLabel.setText(issue.id.toString());
         titleTextField.setText(issue.title);
         descriptionTextArea.setText(issue.description);
         priorityComboBox.setSelectedItem(issue.priority.toString());
         statusComboBox.setSelectedItem(issue.status.toString());
-        assigneeLabel.setText(issue.assignee != null ? issue.assignee.toString() : "Unassigned");
+        assigneeLabel.setText("Unassigned");
         notesTextArea.setText(issue.devNotes);
         updatedLabel.setText(issue.updated.toString());
+
+        reporterLabel.setToolTipText(
+                "<html>" +
+                reporter.emailAddress + "<br />" +
+                reporter.phoneNumber + "<br />" +
+                reporter.type.getName() + " (" + reporterProject.name + ")" + "<br />" +
+                "<br />" +
+                "OS: " + reporter.specifications.operatingSystem.getName() + "<br />" +
+                "Java: " + reporter.specifications.javaVersion + "<br />" +
+                "TerminalX: " + reporter.specifications.softwareVersion + "<br />" +
+                "<br />" +
+                "Reported On: " + issue.submitted.toString() +
+                "</html>"
+        );
+
+        if (issue.assignee != null) {
+            User assignee = TerminalX.getUserObj(issue.assignee);
+            Project assigneeProject = TerminalX.getProjectObj(assignee.project);
+
+            assigneeLabel.setText("<html><u style='color: blue'>" + assignee.name + "</u></html>");
+
+            assigneeLabel.setToolTipText(
+                "<html>" +
+                assignee.emailAddress + "<br />" +
+                assignee.phoneNumber + "<br />" +
+                assignee.type.getName() + " (" + assigneeProject.name + ")" + "<br />" +
+                "<br />" +
+                "OS: " + assignee.specifications.operatingSystem.getName() + "<br />" +
+                "Java: " + assignee.specifications.javaVersion + "<br />" +
+                "TerminalX: " + assignee.specifications.softwareVersion +
+                "</html>"
+            );
+        };
 
         logoutButton.addActionListener(actionEvent -> {
             TerminalX.logout();

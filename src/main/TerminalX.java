@@ -11,11 +11,12 @@ import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static main.TerminalX.SortMethod.Title;
+import static main.TerminalX.SortMethod.Status;
+import static main.TerminalX.SortMethod.ID;
 
 public class TerminalX {
     public static ArrayList<User> users;
@@ -87,7 +88,13 @@ public class TerminalX {
         return projects.stream().filter(project -> project.id.equals(uuid)).findFirst().get();
     }
 
-    private static ArrayList<Issue> getIssues() {
+    public enum SortMethod {
+        Title,
+        Status,
+        ID
+    }
+
+    public static ArrayList<Issue> getIssues(SortMethod method) {
         ArrayList<Issue> userIssues;
 
         if (verifiedUser.type == User.AccountType.Customer) {
@@ -95,6 +102,22 @@ public class TerminalX {
         } else {
             userIssues = issues;
         }
+
+        Comparator comparator;
+
+        switch (method) {
+            case Status:
+                comparator = Comparator.comparing((Issue a) -> a.status);
+                break;
+            case ID:
+                comparator = Comparator.comparing((Issue a) -> prettifyUUID(a.id));
+                break;
+            default:
+                comparator = Comparator.comparing((Issue a) -> a.title);
+                break;
+        }
+
+        issues.sort(comparator);
 
         return userIssues;
     }
@@ -111,7 +134,7 @@ public class TerminalX {
 
     private static void displayMenu() {
         screen = new JFrame("Main Menu");
-        screen.setContentPane(new MenuForm(verifiedUser.name, getIssues()).getContentPane());
+        screen.setContentPane(new MenuForm(verifiedUser.name, getIssues(Title)).getContentPane());
         screen.setMinimumSize(new Dimension(650, 500));
         screen.setMaximumSize(new Dimension(650, 500));
         screen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -130,7 +153,7 @@ public class TerminalX {
     }
 
     private static void displayIssueDetails(int index) {
-        Issue issue = getIssues().get(index);
+        Issue issue = getIssues(Title).get(index);
         Container content;
 
         if (verifiedUser.type == User.AccountType.Customer) {

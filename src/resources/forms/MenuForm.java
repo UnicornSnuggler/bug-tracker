@@ -20,24 +20,23 @@ public class MenuForm extends JFrame {
     private JLabel userLabel;
     private JList issueList;
 
+    public void drawIssues(ArrayList<Issue> issues) {
+        DefaultListModel model = new DefaultListModel();
+
+        for (Issue issue : issues) {
+            model.addElement(TerminalX.prettifyUUID(issue.id) + " " +
+                    String.format("%21s", "(" + issue.status.getName() + ")") + " " +
+                    issue.title);
+        }
+
+        issueList.setModel(model);
+    }
+
     public MenuForm(String name, ArrayList<Issue> issues) {
         setContentPane(content);
         userLabel.setText("Signed in as " + name);
 
-        DefaultListModel model = new DefaultListModel();
-
-        for (Issue issue : issues) {
-            model.addElement(TerminalX.prettifyUUID(issue.id) +
-                                " (" + issue.status.getName() + ") " +
-                                issue.title);
-        }
-
-        issueList.setModel(model);
-
-        sortByComboBox.removeAllItems();
-        sortByComboBox.addItem("ID");
-        sortByComboBox.addItem("Status");
-        sortByComboBox.addItem("Title");
+        drawIssues(issues);
 
         submitIssueButton.addActionListener(actionEvent -> {
             TerminalX.openSubmitIssueForm();
@@ -46,7 +45,9 @@ public class MenuForm extends JFrame {
             TerminalX.logout();
         });
         sortByComboBox.addActionListener(actionEvent -> {
-            // Placeholder
+            TerminalX.SortMethod method = TerminalX.SortMethod.valueOf(sortByComboBox.getSelectedItem().toString());
+            System.out.println("Sorting method: " + method.toString());
+            drawIssues(TerminalX.getIssues(method));
         });
         showArchivedCheckBox.addActionListener(actionEvent -> {
             // Placeholder

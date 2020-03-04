@@ -56,7 +56,7 @@
     "updated": "Feb 20, 2020, 4:18:38 PM",
     "reporter": "6013882e-5d94-4c63-a7d4-c24514a6c3d7",
     "type": "Bug",
-    "priority": "Low",
+    "priority": "Medium",
     "title": "Double-clicking on the \"Submit\" button freezes the program.",
     "description": "I was trying to make a submission and I double-clicked the \"Submit\" button...  It broke the program and it just hung forever.  I was able to restart it and successfully make my submission with a single-click, but this is an annoying issue that needs to be fixed immediately.",
     "status": "Backlog",

@@ -53,7 +53,13 @@
         <constraints>
           <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <model>
+            <item value="Title"/>
+            <item value="Status"/>
+            <item value="ID"/>
+          </model>
+        </properties>
       </component>
       <component id="4cf83" class="javax.swing.JLabel">
         <constraints>
@@ -126,6 +132,7 @@
           <component id="a7c85" class="javax.swing.JList" binding="issueList">
             <constraints/>
             <properties>
+              <font name="Consolas"/>
               <minimumSize width="600" height="300"/>
               <selectionMode value="0"/>
             </properties>

@@ -32,12 +32,12 @@ public class CustomerIssueDetailsForm extends JFrame {
         userLabel.setText("Signed in as " + name);
 
         reporterLabel.setText(issue.submitted.toString());
-        typeComboBox.setSelectedItem(issue.type);
+        typeComboBox.setSelectedItem(issue.type.getName());
         idLabel.setText(issue.id.toString());
         titleTextField.setText(issue.title);
         descriptionTextArea.setText(issue.description);
-        priorityLabel.setText(issue.priority.toString());
-        statusLabel.setText(issue.status.toString());
+        priorityLabel.setText(issue.priority.getName());
+        statusLabel.setText(issue.status.getName());
         assigneeLabel.setText(issue.assignee != null ? issue.assignee.toString() : "Unassigned");
         notesTextArea.setText(issue.devNotes);
         updatedLabel.setText(issue.updated.toString());
